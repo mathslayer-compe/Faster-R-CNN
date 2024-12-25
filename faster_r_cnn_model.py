@@ -12,6 +12,7 @@ import torchvision
 import os
 from PIL import Image
 import matplotlib.pyplot as plt
+import cv2
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -102,9 +103,6 @@ for epoch in range(num_epochs):
     print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {epoch_loss/len(train_loader):.4f}")
 
 
-
-import cv2
-import matplotlib.pyplot as plt
 
 model.eval()
 test_img_path = r'/content/drive/My Drive/Colab Notebooks/animals/animals'
