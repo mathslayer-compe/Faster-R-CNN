@@ -89,8 +89,8 @@ for epoch in range(num_epochs):
 
     for images, targets in train_loader:
         # Move images and targets to the GPU
-        images = list(image.to(device) for image in images)  # Move each image to the device
-        targets = [{k: v.to(device) for k, v in t.items()} for t in targets]  # Move target tensors to the device
+        images = list(image.to(device) for image in images)  
+        targets = [{k: v.to(device) for k, v in t.items()} for t in targets] 
 
         optimizer.zero_grad()
         loss_dict = model(images, targets)
@@ -119,7 +119,7 @@ def draw_boxes(image, predictions, threshold=0.5):
         if score > threshold:
             x1, y1, x2, y2 = box.int()
             label_idx = predictions[0]['labels'][i].item()
-            label = dataset.classes[label_idx - 1]  # Background is class 0
+            label = dataset.classes[label_idx - 1]  
             cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
             cv2.putText(img, f'{label}: {score:.2f}', (x1, y1 - 10),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
